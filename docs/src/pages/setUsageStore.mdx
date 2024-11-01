@@ -1,0 +1,24 @@
+# Set Usage Store
+
+```ts
+import { setUsageStore } from "usage-api";
+
+const res = setUsageStore(process.env.USAGE_API_KEY, {
+    usageStoreId: "my-usage-store-id", // required
+    rateLimits: [ // optional, max 3 rate limits per usage store
+        {
+            rateLimitId: "my-rate-limit-id",
+            limit: 100,
+            timeWindowSeconds: 60
+        }
+    ],
+    blocked: false // optional, default false
+});
+
+type res = {
+    success: true
+} | {
+    success: false,
+    message: string
+}
+```

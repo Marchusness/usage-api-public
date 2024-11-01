@@ -1,0 +1,29 @@
+# Usage API Docs
+
+
+import { useState } from 'react';
+
+export function Button() {
+    const [colorMode, setColorMode] = useState("light");
+
+    return <button
+        className={
+            colorMode === "light" ? "bg-red-500 text-white p-2" : "bg-green-500 text-white p-2"
+        }
+        onClick={async () => {
+            if (colorMode === "dark") {
+                setColorMode("light")
+                return
+            }
+            setColorMode("dark")
+        }}
+    >
+        {colorMode}
+    </button>
+}
+
+<div 
+    className="w-full h-52 bg-blue-500"
+>
+    <Button />
+</div>

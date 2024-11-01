@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"name": "workspace",
+			"path": "."
+		},
+		{
+			"name": "docs",
+			"path": "../docs"
+		},
+		{
+			"name": "package",
+			"path": "../package"
+		}
+	],
+	"settings": {}
+}

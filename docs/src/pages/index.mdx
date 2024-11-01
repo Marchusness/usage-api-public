@@ -1,0 +1,18 @@
+# Usage API Quick Start
+Usage API records usage in 'usage stores'. Each usage store has a unique ID, normally associated with a User ID or project ID.
+
+
+## Create a usage store
+Create a usage store using the [`setUsageStore`](/setUsageStore) API or using the `onNoUsageStore` parameter when calling [`createApiKey`](/createApiKey) or [`record`](/record) API.
+
+
+## Updating usage store
+Update the rate limiting or block requests to a usage store using the [`setUsageStore`](/setUsageStore) API.
+
+
+## Record Usage
+Record usage using the [`record`](/record) or [`authAndRecord`](/authAndRecord) API. If you just want to authenticate an API key use the [`auth`](/auth) API.
+
+
+## Getting usage data
+It is recommended to setup the [webhook](/webhook) to get hourly aggregated usage data. This webhook should be used to send usage to the payment provider for example send a usage record to Stripe. When wanting to display real time usage data on a dashboard use the [`getUsage`](/getUsage) API.

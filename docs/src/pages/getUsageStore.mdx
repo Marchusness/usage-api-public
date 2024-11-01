@@ -1,0 +1,30 @@
+# Get Usage Store
+
+```ts
+import { getUsageStoreDetails } from "usage-api";
+
+const res = getUsageStoreDetails(process.env.USAGE_API_KEY, {
+    usageStoreId: "my-usage-store-id" // required
+});
+
+type res = {
+    success: true,
+    usageStoreDetails: {
+        keys: {
+            [apiKey: string]: {
+                keyName: string
+            }
+        }
+        rateLimits?: { // optional, max 3 rate limits per usage store
+            [rateLimitId: string]: {
+                limit: number,
+                timeWindowSeconds: number
+            }
+        }[]
+        blocked: boolean // optional, default false
+    }
+} | {
+    success: false,
+    message: string
+}
+```
