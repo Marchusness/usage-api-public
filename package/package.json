@@ -1,7 +1,17 @@
 {
   "name": "usage-api",
-  "version": "3.0.1",
-  "description": "api for tracking usage",
+  "version": "3.0.2",
+  "description": "API for recording usage data",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Marchusness/usage-api-public.git"
+  },
+  "homepage": "https://www.usageapi.com/",
+  "docs": "https://www.usageapi.com/docs",
+  "documentation": "https://www.usageapi.com/docs",
+  "bugs": {
+    "url": "https://github.com/Marchusness/usage-api-public/issues"
+  },
   "files": [
     "**/*"
   ],

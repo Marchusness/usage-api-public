@@ -11,7 +11,7 @@ export const setUsageStoreDetailsSchema = z.object({
       .min(1, 'Minimum of 1 rate limit allowed')
       .max(3, 'Maximum of 3 rate limits allowed')
   ),
-  blocked: z.optional(z.boolean()),
+  blockAfterTimestamp: z.optional(z.number()),
 });
 
 
