@@ -1,29 +1,31 @@
-# Usage API Docs
+# Create API Key
 
+```ts
+import { createApiKey } from "usage-api";
 
-import { useState } from 'react';
-
-export function Button() {
-    const [colorMode, setColorMode] = useState("light");
-
-    return <button
-        className={
-            colorMode === "light" ? "bg-red-500 text-white p-2" : "bg-green-500 text-white p-2"
-        }
-        onClick={async () => {
-            if (colorMode === "dark") {
-                setColorMode("light")
-                return
+const res = createApiKey(process.env.USAGE_API_KEY, {
+    usageStoreId: "my-usage-store-id", // required
+    keyName: "my-api-key-name", // required
+    onNoUsageStore: { // optional, default block
+        type: "create"
+        rateLimits: [ // optional, max 3 rate limits per usage store
+            {
+                rateLimitId: "my-rate-limit-id",
+                limit: 100,
+                timeWindowSeconds: 60
             }
-            setColorMode("dark")
-        }}
-    >
-        {colorMode}
-    </button>
-}
+        ],
+    } | {
+        type: "block"
+    }
+});
 
-<div 
-    className="w-full h-52 bg-blue-500"
->
-    <Button />
-</div>
+type res = {
+    success: true,
+    apiKey: string, // API key to provide to user
+    apiKeyId: string
+} | {
+    success: false,
+    message: string
+}
+```

@@ -1,29 +1,17 @@
-# Usage API Docs
+# Create API Key
 
+```ts
+import { deleteApiKey } from "usage-api";
 
-import { useState } from 'react';
+const res = deleteApiKey(process.env.USAGE_API_KEY, {
+    usageStoreId: "my-usage-store-id", // required
+    apiKeyId: "my-api-key-id" // required
+});
 
-export function Button() {
-    const [colorMode, setColorMode] = useState("light");
-
-    return <button
-        className={
-            colorMode === "light" ? "bg-red-500 text-white p-2" : "bg-green-500 text-white p-2"
-        }
-        onClick={async () => {
-            if (colorMode === "dark") {
-                setColorMode("light")
-                return
-            }
-            setColorMode("dark")
-        }}
-    >
-        {colorMode}
-    </button>
+type res = {
+    success: true,
+} | {
+    success: false,
+    message: string
 }
-
-<div 
-    className="w-full h-52 bg-blue-500"
->
-    <Button />
-</div>
+```

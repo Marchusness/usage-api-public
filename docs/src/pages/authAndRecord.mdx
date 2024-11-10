@@ -1,29 +1,34 @@
-# Usage API Docs
+# Auth And Record
 
+## Important
+The usage record keys are used to aggregate usage record values. There is a limit of 5000 unique usage record keys per usage store per hour. If you exceed this limit, some usage record keys will be ignored.
 
-import { useState } from 'react';
+```ts
+import { authAndRecord } from "usage-api";
 
-export function Button() {
-    const [colorMode, setColorMode] = useState("light");
-
-    return <button
-        className={
-            colorMode === "light" ? "bg-red-500 text-white p-2" : "bg-green-500 text-white p-2"
-        }
-        onClick={async () => {
-            if (colorMode === "dark") {
-                setColorMode("light")
-                return
+const res = authAndRecord(
+    process.env.USAGE_API_KEY, 
+    usageStoreApiKey, // api key from the user
+    {
+        usageRecords: [ // required, max 10 usage records per request
+            {
+                key: "Usage_Record_Key", // required
+                value: 1 // required
+            },
+            {
+                key: "Usage_Record_Key_the_second",
+                value: 0.001
             }
-            setColorMode("dark")
-        }}
-    >
-        {colorMode}
-    </button>
-}
+        ]
+        rateLimitBehavior: "ignore" | "log-and-block" | "log-only" // default log-and-block
+        blockBehavior: "ignore" | "block" // default block
+    }
+);
 
-<div 
-    className="w-full h-52 bg-blue-500"
->
-    <Button />
-</div>
+type res = {
+    success: true,
+} | {
+    success: false,
+    message: string
+}
+```

@@ -8,7 +8,13 @@ export const deleteKeySchema = z.object({
   apiKeyId: z.string(),
 });
 
-
 export type DeleteKeyRequest = z.infer<typeof deleteKeySchema>;
 
-export type DeleteKeyResponse = ResponseWrapper<object>
+export type DeleteKeyResponse = ResponseWrapper<{
+  success: {};
+  usageStoreNotFound: {};
+  apiKeyNotFound: {};
+  rateLimited: {
+    message: string;
+  };
+}>

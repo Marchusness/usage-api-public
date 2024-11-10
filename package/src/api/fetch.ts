@@ -23,9 +23,10 @@ export async function typedFetch<P extends keyof PathToObjectMapper>(
     return response.json() as Promise<PathToObjectMapper[P]["response"]>;
   } catch (error) {
     return {
-      success: false,
-      message: "FETCH_ERROR",
-      debugMessage: (error as { message: string }).message,
+      status: "error",
+      data: {
+        message: "fetch error",
+      },
     };
   }
 }

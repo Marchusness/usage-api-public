@@ -1,29 +1,34 @@
-# Usage API Docs
+# Usage API Webhook
 
+The usage api webhook will be triggered once an hour for all usage stores that have recordings in the past hour. 
 
-import { useState } from 'react';
+```ts
+import { verifyWebhookRequest, WebhookData } from "usage-api/webhook";
 
-export function Button() {
-    const [colorMode, setColorMode] = useState("light");
-
-    return <button
-        className={
-            colorMode === "light" ? "bg-red-500 text-white p-2" : "bg-green-500 text-white p-2"
-        }
-        onClick={async () => {
-            if (colorMode === "dark") {
-                setColorMode("light")
-                return
-            }
-            setColorMode("dark")
-        }}
-    >
-        {colorMode}
-    </button>
+export async function ApiHandler(request: Request) {
+    try {
+        const webhookData: WebhookData = await verifyWebhookRequest(
+            process.env.USAGE_API_WEBHOOK_SECRET, 
+            request
+        );
+        // handle the response
+    } catch (e) {
+        return new Response("Failed to verify webhook", { status: 400 });
+    }
 }
 
-<div 
-    className="w-full h-52 bg-blue-500"
->
-    <Button />
-</div>
+type WebhookData = {
+    project: string;
+    usageStore: string;
+    usage: {
+        blocked: number;
+        rateLimited: number;
+        unauthenticated: number;
+        auth: number;
+        recorded: number;
+        usageRecords: {
+            [usageRecordKey: string]: number
+        };
+    };
+}
+```

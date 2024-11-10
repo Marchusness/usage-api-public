@@ -17,4 +17,9 @@ export const setUsageStoreDetailsSchema = z.object({
 
 export type SetUsageStoreDetailsRequest = z.infer<typeof setUsageStoreDetailsSchema>;
 
-export type SetUsageStoreDetailsResponse = ResponseWrapper<object>
+export type SetUsageStoreDetailsResponse = ResponseWrapper<{
+  success: {};
+  rateLimited: {
+    message: string;
+  };
+}>

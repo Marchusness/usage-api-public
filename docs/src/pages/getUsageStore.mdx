@@ -11,17 +11,17 @@ type res = {
     success: true,
     usageStoreDetails: {
         keys: {
-            [apiKey: string]: {
+            [apiKeyId: string]: {
                 keyName: string
             }
         }
-        rateLimits?: { // optional, max 3 rate limits per usage store
+        rateLimits?: {
             [rateLimitId: string]: {
                 limit: number,
                 timeWindowSeconds: number
             }
         }[]
-        blocked: boolean // optional, default false
+        blocked?: boolean
     }
 } | {
     success: false,

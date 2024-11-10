@@ -3,8 +3,8 @@ import { typedFetch } from "./fetch";
 
 export async function authAndRecordUsage(
   apiKey: string,
-  request: AuthAndRecordUsageRequest,
   usageStoreApiKey: string,
+  request: AuthAndRecordUsageRequest,
 ) {
   return typedFetch(apiKey, request, "/auth-and-record-usage", usageStoreApiKey);
 }

@@ -10,5 +10,6 @@ export const getUsageStoreDetailsSchema = z.object({
 export type GetUsageStoreDetailsRequest = z.infer<typeof getUsageStoreDetailsSchema>;
 
 export type GetUsageStoreDetailsResponse = ResponseWrapper<{
-  usageStoreDetails: UsageStoreDetails;
+  success: UsageStoreDetails;
+  usageStoreNotFound: {};
 }>;

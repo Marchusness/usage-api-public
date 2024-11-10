@@ -4,7 +4,7 @@ import { typedFetch } from "./fetch";
 export async function auth(
   apiKey: string,
   usageStoreApiKey: string,
-  request: AuthRequest,
+  request?: AuthRequest,
 ) {
-  return typedFetch(apiKey, request, "/auth", usageStoreApiKey);
+  return typedFetch(apiKey, request ?? {}, "/auth", usageStoreApiKey);
 }

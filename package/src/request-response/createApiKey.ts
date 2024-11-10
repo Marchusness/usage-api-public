@@ -17,6 +17,12 @@ export const createKeySchema = z.object({
 export type CreateKeyRequest = z.infer<typeof createKeySchema>;
 
 export type CreateKeyResponse = ResponseWrapper<{
-  apiKey: string;
-  apiKeyId: string;
+  success: {
+    apiKey: string;
+    apiKeyId: string;
+  };
+  rateLimited: {
+    message: string;
+  };
+  usageStoreNotFound: {};
 }>;
