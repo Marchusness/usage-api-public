@@ -1,6 +1,6 @@
 {
   "name": "usage-api",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "API for recording usage data",
   "repository": {
     "type": "git",

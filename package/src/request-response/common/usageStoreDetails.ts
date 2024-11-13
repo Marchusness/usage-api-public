@@ -1,15 +1,16 @@
 export type RateLimitConfigs = Record<string, {
-    limit: number;
-    timeWindowSeconds: number;
-  }>
+  maxCapacity: number;
+  refillCapacity: number;
+  refillTimeSeconds: number;
+}>
   
-  export type ApiKeys = Record<string, {
-    keyName: string;
-  }>
+export type ApiKeys = Record<string, {
+  keyName: string;
+}>
 
 export interface UsageStoreDetails {
-    keys: ApiKeys;
-    rateLimits?: RateLimitConfigs;
-    blocked?: boolean;
-  }
+  keys: ApiKeys;
+  rateLimits?: RateLimitConfigs;
+  blocked?: boolean;
+}
   
