@@ -26,16 +26,28 @@ export async function verifyWebhookRequest(webhookSecret: string, request: Reque
     const body = await request.text();
     const signature = request.headers.get(WEBHOOK_SIGNATURE_HEADER);
 
-    const data = JSON.parse(body);
-
-    if (!isWebhookData(data) || !signature) {
-        throw new Error('Invalid data');
+    
+    if (!signature) {
+        throw new Error('Signature is missing from the request');
     }
-
+    
     const isVerified = await verifySignature(webhookSecret, body, signature);
-
+    
     if (!isVerified) {
         throw new Error('Signature verification failed');
+    }
+    
+    const data = JSON.parse(body);
+
+    try {
+        if (!isWebhookData(data)) {
+            throw new Error('Invalid webhook data');
+        }
+    } catch (error) {
+        if (error instanceof Error) {
+            throw new Error('Invalid webhook data: ' + error.message);
+        }
+        throw new Error('Invalid webhook data');
     }
 
     return data;

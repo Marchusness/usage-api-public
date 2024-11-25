@@ -11,6 +11,6 @@ export type ApiKeys = Record<string, {
 export interface UsageStoreDetails {
   keys: ApiKeys;
   rateLimits?: RateLimitConfigs;
-  blocked?: boolean;
+  blockAfterTimestamp?: number;
 }
   
