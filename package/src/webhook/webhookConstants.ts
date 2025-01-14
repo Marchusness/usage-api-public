@@ -22,5 +22,3 @@ export const ENCRYPTION_ALGORITHM = {
     hash: 'SHA-256',
     saltLength: SALT_LENGTH,
 };
-
-const SIGNATURE_ENCODING = 'base64';

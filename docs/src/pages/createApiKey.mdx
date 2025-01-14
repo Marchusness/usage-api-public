@@ -8,13 +8,7 @@ const res = createApiKey(process.env.USAGE_API_KEY, {
     keyName: "my-api-key-name", // required
     onNoUsageStore: { // optional, default block
         type: "create"
-        rateLimits: [ // optional, max 3 rate limits per usage store
-            {
-                rateLimitId: "my-rate-limit-id",
-                limit: 100,
-                timeWindowSeconds: 60
-            }
-        ],
+        blockAfterTimestamp: number // timestamp in seconds since epoch
     } | {
         type: "block"
     }

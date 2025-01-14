@@ -4,18 +4,19 @@
 import { auth } from "usage-api";
 
 const res = auth(
-    process.env.USAGE_API_KEY, 
-    usageStoreApiKey, // api key from the user
-    {
-        rateLimitBehavior: "ignore" | "log-and-block" | "log-only" // default log-and-block
-        blockBehavior: "ignore" | "block" // default block
-    }
+  process.env.USAGE_API_KEY,
+  usageStoreApiKey, // api key from the user
+  {
+    blockBehavior: "ignore" | "block", // default block
+  }
 );
 
-type res = {
-    success: true,
-} | {
-    success: false,
-    message: string
-}
+type res =
+  | {
+      success: true;
+    }
+  | {
+      success: false;
+      message: string;
+    };
 ```

@@ -1,5 +1,5 @@
 
-import { UsageDoc } from "../src/request-response/common/usageDoc";
+import { UsageDoc } from "../src/types";
 import { generateAsymmetricKeyPair, signWebhook, verifyWebhookRequest, WebhookData } from "../src/webhook";
 import { verifySignature, WEBHOOK_SIGNATURE_HEADER } from "../src/webhook/verifyWebhook";
 
@@ -75,7 +75,6 @@ describe("Test webhook signing and verification", () => {
                 },
                 op_recorded: 0,
                 op_blocked: 0,
-                op_rate_limited: 0,
                 op_unauthenticated: 0,
                 op_authenticated: 0,
                 op_store_returned: 0,

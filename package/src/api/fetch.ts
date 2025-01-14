@@ -1,11 +1,11 @@
-import { PathToObjectMapper } from "../types";
+import { RouteToRequestResponse } from "../types";
 
-export async function typedFetch<P extends keyof PathToObjectMapper>(
+export async function typedFetch<P extends keyof RouteToRequestResponse>(
   apiKey: string,
-  request: PathToObjectMapper[P]["request"],
+  request: RouteToRequestResponse[P]["Request"],
   path: P,
   usageStoreApiKey?: string,
-): Promise<PathToObjectMapper[P]["response"]> {
+): Promise<RouteToRequestResponse[P]["Response"]> {
   try {
     const response = await fetch(`https://api.usageapi.com${path}`, {
       method: "POST",
@@ -20,7 +20,7 @@ export async function typedFetch<P extends keyof PathToObjectMapper>(
       body: JSON.stringify(request),
     });
 
-    return response.json() as Promise<PathToObjectMapper[P]["response"]>;
+    return response.json() as Promise<RouteToRequestResponse[P]["Response"]>;
   } catch (error) {
     return {
       status: "error",

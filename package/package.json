@@ -1,6 +1,6 @@
 {
   "name": "usage-api",
-  "version": "3.0.6",
+  "version": "4.0.1",
   "description": "API for recording usage data",
   "repository": {
     "type": "git",
@@ -26,10 +26,10 @@
       "import": "./index.mjs",
       "require": "./index.js"
     },
-    "./endpoints": {
-      "types": "./index.d.ts",
-      "import": "./index.mjs",
-      "require": "./index.js"
+    "./schemas": {
+      "types": "./schemas.d.ts",
+      "import": "./schemas.mjs",
+      "require": "./schemas.js"
     },
     "./webhook": {
       "types": "./webhook.d.ts",
@@ -41,19 +41,22 @@
     "test": "jest",
     "lint": "eslint --ext .ts ./src --fix",
     "watch": "tsup --watch",
-    "build": "tsup",
+    "build": "npm run generate-types && tsup",
+    "generate-types": "ts-node --transpile-only scripts/generateRequestTypes.ts",
     "deploy": "npm run test && npm run build && cp package.json dist/package.json && cp README.md dist/README.md && cd dist && npm publish"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/jest": "^29.5.14",
-    "@types/node": "^22.8.1",
+    "@types/node": "^22.10.1",
     "eslint": "^8.56.0",
     "jest": "^29.7.0",
     "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
     "tsup": "^8.0.2",
-    "typescript": "^5.6.3",
-    "zod": "^3.23.4"
+    "typescript": "^5.7.2",
+    "zod": "^3.23.8",
+    "zod-to-ts": "^1.2.0"
   }
 }

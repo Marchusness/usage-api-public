@@ -1,6 +1,6 @@
 
 export * from "./api/auth";
-export * from "./api/authAndRecordUsage"
+export * from "./api/authAndRecord"
 export * from "./api/recordUsage"
 export * from "./api/getUsageStoreDetails"
 

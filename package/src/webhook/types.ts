@@ -1,4 +1,4 @@
-import { internalRouteStatusResults, UsageDoc } from "../request-response/common/usageDoc";
+import { UsageDoc } from "../types";
 
 export type WebhookData = {
     project: string;

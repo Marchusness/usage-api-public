@@ -4,14 +4,16 @@
 import { deleteApiKey } from "usage-api";
 
 const res = deleteApiKey(process.env.USAGE_API_KEY, {
-    usageStoreId: "my-usage-store-id", // required
-    apiKeyId: "my-api-key-id" // required
+  usageStoreId: string, // required
+  apiKeyId: string, // required
 });
 
-type res = {
-    success: true,
-} | {
-    success: false,
-    message: string
-}
+type res =
+  | {
+      success: true;
+    }
+  | {
+      success: false;
+      message: string;
+    };
 ```

@@ -1,13 +1,14 @@
 # Auth And Record
 
 ## Important
+
 The usage record keys are used to aggregate usage record values. There is a limit of 5000 unique usage record keys per usage store per hour. If you exceed this limit, some usage record keys will be ignored.
 
 ```ts
 import { authAndRecord } from "usage-api";
 
 const res = authAndRecord(
-    process.env.USAGE_API_KEY, 
+    process.env.USAGE_API_KEY,
     usageStoreApiKey, // api key from the user
     {
         usageRecords: [ // required, max 10 usage records per request
@@ -20,7 +21,6 @@ const res = authAndRecord(
                 value: 0.001
             }
         ]
-        rateLimitBehavior: "ignore" | "log-and-block" | "log-only" // default log-and-block
         blockBehavior: "ignore" | "block" // default block
     }
 );
